@@ -102,6 +102,4 @@ public class JavaList<T> extends ListADT<T> {
 		checkNotEmpty();
 		return inner.remove(0);
 	}
-
-
 }

@@ -288,6 +288,6 @@ public class JavaListTest {
 	
 	@Test
 	public void testToJava() {
-		assertEquals(makeFullList().toJava(), Arrays.asList("a", "b", "c", "d"));
+		assertEquals(Arrays.asList("a", "b", "c", "d"), makeFullList().toJava());
 	}
 }
