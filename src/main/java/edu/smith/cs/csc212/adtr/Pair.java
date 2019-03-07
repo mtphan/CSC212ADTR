@@ -55,4 +55,22 @@ public class Pair<KeyType, ValueType> {
 	public ValueType getValue() {
 		return this.value;
 	}
+	
+	@Override
+	public String toString() {
+		return getKey() + "=" + getValue();
+	}
+		
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		
+		if (obj instanceof Pair) {
+			Pair<?, ?> toCompare = (Pair<?, ?>) obj;
+			return (this.getKey().equals(toCompare.getKey()) && this.getValue().equals(toCompare.getValue()));
+		}
+		return super.equals(obj);
+	}
 }

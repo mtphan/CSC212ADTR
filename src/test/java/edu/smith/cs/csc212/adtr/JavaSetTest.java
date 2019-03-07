@@ -3,8 +3,6 @@ package edu.smith.cs.csc212.adtr;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
@@ -35,31 +33,14 @@ public class JavaSetTest {
 		return data;
 	}
 	
-	/**
-	 * Asserts that two ListADT are equal.
-	 * @param expected - expected ListADT value
-	 * @param actual - actual ListADT value
-	 */
-	private static void assertUnorderedListEquals(ListADT<String> expected, ListADT<String> actual) {
-		List<String> newExpected = expected.toJava();
-		List<String> newActual = actual.toJava();
-		
-		Collections.sort(newExpected);
-		Collections.sort(newActual);
-		
-		assertEquals(newExpected, newActual);
-	}
-	
 	@Test
 	public void testEmpty() {
-		SetADT<String> empty = makeEmptySet();
-		assertEquals(0, empty.size());
+		assertEquals(0, makeEmptySet().size());
 	}
 	
 	@Test
 	public void testSize() {
-		SetADT<String> data = makeFullSet();
-		assertEquals(4, data.size());
+		assertEquals(4, makeFullSet().size());
 	}
 	
 	@Test
@@ -102,16 +83,34 @@ public class JavaSetTest {
 	@Test
 	public void toList() {
 		SetADT<String> data = makeFullSet();
-		assertUnorderedListEquals(data.toList(), new JavaList<String>(Arrays.asList("a", "b", "d", "c")));
+		assertEquals(4, data.toList().size());
+		MyAssert.assertListUnorderlyEquals(data.toList(), new JavaList<String>(Arrays.asList("a", "c", "b", "d")));
+		
 		SetADT<String> empty = makeEmptySet();
-		assertUnorderedListEquals(empty.toList(), new JavaList<String>(Arrays.asList()));
+		assertEquals(0, empty.toList().size());
+		MyAssert.assertListUnorderlyEquals(empty.toList(), new JavaList<String>(Arrays.asList()));
+		assertTrue(empty.toList().isEmpty());
+		
+		SetADT<String> single = makeEmptySet();
+		single.insert("banana");
+		assertEquals(1, single.toList().size());
+		MyAssert.assertListUnorderlyEquals(single.toList(), new JavaList<String>(Arrays.asList("banana")));
 	}
 	
 	@Test
 	public void toJava() {
 		SetADT<String> data = makeFullSet();
+		assertEquals(4, data.toJava().size());
 		assertEquals(data.toJava(), Set.of("a", "b", "d", "c"));
+		
 		SetADT<String> empty = makeEmptySet();
+		assertEquals(0, empty.toJava().size());
 		assertEquals(empty.toJava(), Set.of());
+		assertTrue(empty.toJava().isEmpty());
+		
+		SetADT<String> single = makeEmptySet();
+		single.insert("banana");
+		assertEquals(1, single.toJava().size());
+		assertEquals(single.toJava(), Set.of("banana"));
 	}
 }

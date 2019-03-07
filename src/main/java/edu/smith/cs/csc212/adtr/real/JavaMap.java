@@ -69,4 +69,9 @@ public class JavaMap<K,V> implements MapADT<K,V> {
 		}
 		return output;
 	}
+	
+	@Override
+	public String toString() {
+		return this.data.toString();
+	}
 }

@@ -58,4 +58,9 @@ public class JavaSet<T> implements SetADT<T> {
 	public ListADT<T> toList() {
 		return new JavaList<>(new ArrayList<>(inner));
 	}
+	
+	@Override
+	public String toString() {
+		return inner.toString();
+	}
 }

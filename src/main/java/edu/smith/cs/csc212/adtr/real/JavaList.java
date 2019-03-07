@@ -102,4 +102,9 @@ public class JavaList<T> extends ListADT<T> {
 		checkNotEmpty();
 		return inner.remove(0);
 	}
+	
+	@Override
+	public String toString() {
+		return inner.toString();
+	}
 }
