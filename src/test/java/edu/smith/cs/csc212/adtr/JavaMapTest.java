@@ -121,7 +121,7 @@ public class JavaMapTest {
 		
 		empty.put("pi", 314);
 		assertEquals(1, empty.getKeys().size());
-		MyAssert.assertListUnorderlyEquals(new JavaList<Pair<String, Integer>>(Arrays.asList(new Pair<String, Integer>("pi", 314))), null);
+		MyAssert.assertListUnorderlyEquals(new JavaList<Pair<String, Integer>>(Arrays.asList(new Pair<String, Integer>("pi", 314))), empty.getEntries());
 	}
 	
 	@Test
